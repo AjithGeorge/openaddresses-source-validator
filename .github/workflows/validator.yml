@@ -1,0 +1,31 @@
+name: OA source validator
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout this repo
+      uses: actions/checkout@v4
+
+    - name: Checkout the external repository
+      uses: actions/checkout@v4
+      with:
+        repository: https://github.com/openaddresses/openaddresses.git
+        path: oa_repo  
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Run the Python script
+      run: |
+        python path/to/your_script.py
