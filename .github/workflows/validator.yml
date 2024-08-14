@@ -24,8 +24,8 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install -r requirements.txt
+        pip install -r src/requirements.txt
 
     - name: Run the Python script
       run: |
-        python path/to/your_script.py
+        python src/main.py
