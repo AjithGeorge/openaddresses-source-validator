@@ -64,5 +64,5 @@ def process_all_json_files(root_directory):
         process_json_file(file_path)
 
 if __name__ == "__main__":
-    root_directory = '../test'  # Replace with your root directory path
+    root_directory = './test'  # Replace with your root directory path
     process_all_json_files(root_directory)
