@@ -5,9 +5,16 @@ from urllib.parse import urlparse
 import logging
 from tqdm import tqdm
 
+# Set up log directory and file
+log_dir = './logs'  # Replace with your desired log directory
+log_file = 'url_check.log'
+os.makedirs(log_dir, exist_ok=True)  # Create log directory if it doesn't exist
+log_path = os.path.join(log_dir, log_file)
+
 # Set up logging to overwrite the log file on each run
-logging.basicConfig(filename='url_check.log', level=logging.WARN, 
+logging.basicConfig(filename=log_path, level=logging.WARN, 
                     format='%(asctime)s - %(levelname)s - %(message)s', filemode='w')
+
 
 def check_url(url, file_path):
     # Skip URLs that end with .csv or .zip
