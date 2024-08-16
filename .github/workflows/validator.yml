@@ -34,10 +34,12 @@ jobs:
         run: |
           ls -a
           pwd
+          cat logs/*.log
+          cat logs/url_check.log
             
 
       - name: Upload log file as artifact
         uses: actions/upload-artifact@v4
         with:
           name: logs
-          path: ./logs/*.log
+          path: logs/url_check.log
