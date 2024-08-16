@@ -8,30 +8,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout this repo
-      uses: actions/checkout@v4
+      - name: Checkout this repo
+        uses: actions/checkout@v4
 
-    - name: Checkout the external repository
-      uses: actions/checkout@v4
-      with:
-        repository: openaddresses/openaddresses
-        path: oa_repo  
+      - name: Checkout the external repository
+        uses: actions/checkout@v4
+        with:
+          repository: openaddresses/openaddresses
+          path: oa_repo
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.x'
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
 
-    - name: Install dependencies
-      run: |
-        pip install -r src/requirements.txt
+      - name: Install dependencies
+        run: |
+          pip install -r src/requirements.txt
 
-    - name: Run the Python script
-      run: |
-        python src/main.py
+      - name: Run the Python script
+        run: |
+          python src/main.py
 
-    - name: Upload log file as artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: logs  
-        path: logs/*.log  
+      - name: Display log file contents
+        run: |
+          cat logs/*.log  
+
+      - name: Upload log file as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: logs
+          path: logs/*.log
