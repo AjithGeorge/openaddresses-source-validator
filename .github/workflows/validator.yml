@@ -36,6 +36,7 @@ jobs:
           cat logs/*.log
           cd logs
           ls -a
+          cat url_check.log
 
       - name: Upload log file as artifact
         uses: actions/upload-artifact@v4
