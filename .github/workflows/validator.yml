@@ -32,7 +32,9 @@ jobs:
 
       - name: Display log file contents
         run: |
-          cat src/logs/*.log  
+          ls -a
+          pwd
+            
 
       - name: Upload log file as artifact
         uses: actions/upload-artifact@v4
