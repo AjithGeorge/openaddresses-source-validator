@@ -29,3 +29,9 @@ jobs:
     - name: Run the Python script
       run: |
         python src/main.py
+
+    - name: Upload log file as artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: logs  
+        path: src/logs/*.log  
