@@ -5,6 +5,7 @@ from urllib.parse import urlparse
 import logging
 from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import re
 
 # Set up log directory and file
 log_dir = './out'  # Log directory
@@ -43,20 +44,20 @@ def check_url(url, file_path):
             response = requests.head(url, allow_redirects=True, timeout=15, headers=headers)
             status_code =response.status_code
             if 200 <= response.status_code < 300:
-                logging.info(f"URL is working in file {file_path}: {url}")
+                logging.info(f"{file_path} - URL is working - {url}")
                 return True
             else:
-                logging.warning(f"URL might be broken in file, Status code: {status_code} {file_path}: {url} ")
+                logging.warning(f" {file_path} - URL might be broken, Status code: {status_code}: {url} ")
                 return False
         except requests.RequestException as e:
-            logging.warning(f"Exception for URL in file {file_path}:{url}  {e}")
+            logging.warning(f"{file_path} - Exception for URL in file :{url}  {e}")
             return False
     
     def make_request(url):
         try:
             response = requests.head(url, allow_redirects=True, timeout=15, headers=headers)
             if 200 <= response.status_code < 300:
-                logging.info(f"URL is working in file {file_path}: {url}")
+                logging.info(f"{file_path} - URL is working - {url}")
                 return True
             else:
                 return False
@@ -128,6 +129,32 @@ def process_all_json_files(root_directory, parallel=False):
         for file_path in tqdm(json_files, desc='Processing JSON files', unit='file'):
             logging.info(f"Processing file: {file_path}")
             process_json_file(file_path)
+            
+def generate_badges_from_log(log_path, output_dir='./badges'):
+    # Ensure the output directory exists
+    os.makedirs(output_dir, exist_ok=True)
+    
+    with open(log_path, 'r') as log_file:
+        for i, line in enumerate(log_file):
+            # Match the log lines with status codes or exceptions
+            status_match = re.search(r'WARNING -\s+(.*) - URL might be broken in file, Status code: (\d+): (https?://\S+)', line)
+            exception_match = re.search(r'WARNING -\s+(.*) - Exception for URL in file :(\S+) (.*)', line)
+            
+            if status_match:
+                file_path = status_match.group(1).replace('\\', '/')
+                badge_md = f"![{file_path} - Status code failure](https://img.shields.io/badge/{file_path.replace('/', '_')}-Failed-red)"
+            
+            elif exception_match:
+                file_path = exception_match.group(1).replace('\\', '/')
+                badge_md = f"![{file_path} - Exception](https://img.shields.io/badge/{file_path.replace('/', '_')}-Exception-red)"
+            
+            else:
+                continue
+            
+            # Save the markdown for each badge
+            badge_file_name = f"badge_{i}.md"
+            with open(os.path.join(output_dir, badge_file_name), 'w') as badge_file:
+                badge_file.write(badge_md)
 
 if __name__ == "__main__":
     root_directory = os.getenv('ROOT_DIRECTORY', './test')
@@ -135,3 +162,8 @@ if __name__ == "__main__":
 
     for handler in logging.getLogger().handlers:
         handler.flush()
+        
+    generate_badges_from_log(log_path)
+
+
+    
