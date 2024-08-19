@@ -130,8 +130,8 @@ def process_all_json_files(root_directory, parallel=False):
             process_json_file(file_path)
 
 if __name__ == "__main__":
-    root_directory = './test'  # Replace with your root directory path
+    root_directory = os.getenv('ROOT_DIRECTORY', './test')
     process_all_json_files(root_directory, parallel=PARALLEL_PROCESSING)
-    
+
     for handler in logging.getLogger().handlers:
         handler.flush()
