@@ -17,6 +17,13 @@ jobs:
       - name: Checkout this repo
         uses: actions/checkout@v4
 
+      - name: Move external repo contents
+        run: |
+          shopt -s dotglob  
+          mv oa_repo/* .
+          mv oa_repo/.[!.]* .
+          rm -rf oa_repo  
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
