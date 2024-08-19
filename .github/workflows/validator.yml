@@ -47,8 +47,8 @@ jobs:
         id: package
         uses: jaywcjlove/github-action-read-file@main
         with:
-          path: package.json
+          path: logs/url_check.log
 
-      - name: Echo package.json
+      - name: Echo content
         run: echo "${{ steps.package.outputs.content }}"
   
