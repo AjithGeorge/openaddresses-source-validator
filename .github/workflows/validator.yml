@@ -33,11 +33,11 @@ jobs:
       - name: Display log file contents
         run: |
           echo "Log file content:"
-          cat out/url_check.log  
+          cat out/broken_links.log  
 
       - run: pwd
       - run: ls -la out
       - uses: actions/upload-artifact@v4
         with:
-          name: my-artifact
+          name: logs
           path: out/*
