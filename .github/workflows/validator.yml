@@ -8,14 +8,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout this repo
+        uses: actions/checkout@v4
+
       - name: Checkout the external repository
         uses: actions/checkout@v4
         with:
           repository: openaddresses/openaddresses
           path: oa_repo
 
-      - name: Checkout this repo
-        uses: actions/checkout@v4
+      - name: List contents of external_repo
+        run: |
+          ls -al oa_repo
 
       - name: Move external repo contents
         run: |
