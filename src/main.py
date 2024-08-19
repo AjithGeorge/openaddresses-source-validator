@@ -20,6 +20,8 @@ console_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(
 
 logging.getLogger().addHandler(console_handler)
 
+logging.warning("This is a test log entry")
+
 def check_url(url, file_path):
     # Skip URLs that end with .csv or .zip
     if url.endswith(('.csv', '.zip')):
@@ -77,4 +79,5 @@ def process_all_json_files(root_directory):
 if __name__ == "__main__":
     root_directory = './test'  # Replace with your root directory path
     process_all_json_files(root_directory)
-    logging.shutdown()
+for handler in logging.getLogger().handlers:
+    handler.flush()
