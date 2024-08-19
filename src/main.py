@@ -73,3 +73,4 @@ def process_all_json_files(root_directory):
 if __name__ == "__main__":
     root_directory = './test'  # Replace with your root directory path
     process_all_json_files(root_directory)
+    logging.shutdown()

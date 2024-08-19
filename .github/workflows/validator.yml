@@ -29,26 +29,10 @@ jobs:
       - name: Run the Python script
         run: |
           python src/main.py
-
-      - name: Display log file contents
-        run: |
-          ls -a
-          cd logs
-          pwd
-          ls -a
-        
+             
       - run: pwd
       - run: ls -a
       - uses: actions/upload-artifact@v4
         with:
           name: my-artifact
           path: logs/*
-      - name: Read README.md
-        id: package
-        uses: jaywcjlove/github-action-read-file@main
-        with:
-          path: logs/url_check.log
-
-      - name: Echo content
-        run: echo "${{ steps.package.outputs.content }}"
-  
