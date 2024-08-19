@@ -29,7 +29,10 @@ jobs:
       - name: Run the Python script
         run: |
           python src/main.py
-             
+
+      - name: Wait for logs to flush
+        run: sleep 2    
+                 
       - run: pwd
       - run: ls -a
       - uses: actions/upload-artifact@v4
