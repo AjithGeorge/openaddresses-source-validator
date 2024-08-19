@@ -33,12 +33,9 @@ jobs:
       - name: Display log file contents
         run: |
           ls -a
-          cat logs/url_check.txt
           cd logs
           pwd
           ls -a
-          cat url_check.txt
-
       - run: pwd
       - run: ls -a
       - uses: actions/upload-artifact@v4
