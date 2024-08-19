@@ -32,6 +32,7 @@ jobs:
 
       - name: Display log file contents
         run: |
+          ls -a
           echo "Log file content:"
           cat out/broken_links.log  
 
