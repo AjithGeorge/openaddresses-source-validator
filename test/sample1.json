@@ -10,7 +10,8 @@
         "US Census": {
             "geoid": "1349756",
             "name": "City of Marietta",
-            "state": "ga"
+            "state": "ga",
+            "data": "https://gis.worldviewsolutions.com/arcgis/rest/services/norton/real_estate/MapServer/21"
         },
         "country": "us",
         "state": "ga",
@@ -19,6 +20,7 @@
         "data": "https://data.openaddresses.io/cache/us-ga-colquitt_county.csv"
     },
     "schema": 2,
+    "data": "https://gis.worldviewsolutions.com/arcgis/rest/services/norton/real_estate/MapServer/21",
     "layers": {
         "addresses": [
             {

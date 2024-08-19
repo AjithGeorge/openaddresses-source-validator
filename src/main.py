@@ -25,7 +25,7 @@ CONSOLE_LOGGING = False
 # Console Logging
 if CONSOLE_LOGGING:
     console_handler = logging.StreamHandler()
-    console_handler.setLevel(logging.INFO)
+    console_handler.setLevel(logging.WARN)
     console_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
     logging.getLogger().addHandler(console_handler)
 
@@ -130,7 +130,7 @@ def process_all_json_files(root_directory, parallel=False):
             process_json_file(file_path)
 
 if __name__ == "__main__":
-    root_directory = './oa_repo/sources/us/va'  # Replace with your root directory path
+    root_directory = './test'  # Replace with your root directory path
     process_all_json_files(root_directory, parallel=PARALLEL_PROCESSING)
     
     for handler in logging.getLogger().handlers:
