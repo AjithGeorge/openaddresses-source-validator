@@ -33,14 +33,14 @@ jobs:
       - name: Display log file contents
         run: |
           ls -a
-          cat logs/*.log
+          cat logs/url_check.txt
           cd logs
           pwd
           ls -a
-          cat url_check.log
+          cat url_check.txt
 
       - name: Upload log file as artifact
         uses: actions/upload-artifact@v4
         with:
           name: my-artifact
-          path: logs/*.log
+          path: logs/*
