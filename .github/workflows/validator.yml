@@ -14,12 +14,15 @@ jobs:
     steps:
       - name: Checkout this repo
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false 
 
       - name: Checkout the external repository
         uses: actions/checkout@v4
         with:
           repository: openaddresses/openaddresses
           path: openaddresses
+          persist-credentials: false 
 
       - name: Set up Python
         uses: actions/setup-python@v5
