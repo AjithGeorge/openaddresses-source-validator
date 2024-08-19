@@ -12,7 +12,7 @@ os.makedirs(log_dir, exist_ok=True)  # Create log directory if it doesn't exist
 log_path = os.path.join(log_dir, log_file)
 
 # Set up logging to overwrite the log file on each run
-logging.basicConfig(filename=log_path, level=logging.WARN, 
+logging.basicConfig(filename=log_path, level=logging.INFO, 
                     format='%(asctime)s - %(levelname)s - %(message)s', filemode='w')
 console_handler = logging.StreamHandler()
 console_handler.setLevel(logging.WARN)

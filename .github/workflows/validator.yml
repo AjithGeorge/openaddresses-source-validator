@@ -28,16 +28,12 @@ jobs:
 
       - name: Run the Python script
         run: |
-          python src/main.py
-
-      - name: Wait for flush
-        run: sleep 2    
+          python src/main.py 
 
       - name: Display log file contents
         run: |
           echo "Log file content:"
           cat out/url_check.log  
-          cat test/sample1.json
 
       - run: pwd
       - run: ls -la out
