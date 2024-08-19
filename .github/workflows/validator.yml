@@ -21,13 +21,6 @@ jobs:
         run: |
           ls -al oa_repo
 
-      - name: Move external repo contents
-        run: |
-          shopt -s dotglob  
-          mv oa_repo/* .
-          mv oa_repo/.[!.]* .
-          rm -rf oa_repo  
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
