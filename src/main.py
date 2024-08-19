@@ -134,18 +134,22 @@ def generate_badges_from_log(log_path, output_dir='./badges'):
     # Ensure the output directory exists
     os.makedirs(output_dir, exist_ok=True)
     
+    # Precompile regex patterns for efficiency
+    status_pattern = re.compile(r'WARNING -\s+(.*) - URL might be broken in file, Status code: (\d+): (https?://\S+)')
+    exception_pattern = re.compile(r'WARNING -\s+(.*) - Exception for URL in file :(\S+) (.*)')
+    
     with open(log_path, 'r') as log_file:
         for i, line in enumerate(log_file):
-            # Match the log lines with status codes or exceptions
-            status_match = re.search(r'WARNING -\s+(.*) - URL might be broken in file, Status code: (\d+): (https?://\S+)', line)
-            exception_match = re.search(r'WARNING -\s+(.*) - Exception for URL in file :(\S+) (.*)', line)
+            status_match = status_pattern.search(line)
+            exception_match = exception_pattern.search(line)
             
             if status_match:
-                file_path = status_match.group(1).replace('\\', '/')
-                badge_md = f"![{file_path} - Status code failure](https://img.shields.io/badge/{file_path.replace('/', '_')}-Failed-red)"
+                file_path = status_match.group(1).replace('\\', '/').lstrip('./')
+                status_code = status_match.group(2)
+                badge_md = f"![{file_path} - Status code {status_code}](https://img.shields.io/badge/{file_path.replace('/', '_')}-Failed-red)"
             
             elif exception_match:
-                file_path = exception_match.group(1).replace('\\', '/')
+                file_path = exception_match.group(1).replace('\\', '/').lstrip('./')
                 badge_md = f"![{file_path} - Exception](https://img.shields.io/badge/{file_path.replace('/', '_')}-Exception-red)"
             
             else:
@@ -153,9 +157,10 @@ def generate_badges_from_log(log_path, output_dir='./badges'):
             
             # Save the markdown for each badge
             badge_file_name = f"badge_{i}.md"
-            with open(os.path.join(output_dir, badge_file_name), 'w') as badge_file:
+            badge_file_path = os.path.join(output_dir, badge_file_name)
+            with open(badge_file_path, 'w') as badge_file:
                 badge_file.write(badge_md)
-
+                
 if __name__ == "__main__":
     root_directory = os.getenv('ROOT_DIRECTORY', './test')
     process_all_json_files(root_directory, parallel=PARALLEL_PROCESSING)
