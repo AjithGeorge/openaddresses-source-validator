@@ -1,12 +1,16 @@
 {
     "coverage": {
+        
         "geometry": {
             "type": "Point",
             "coordinates": [
                 -84.577,
                 33.948
-            ]
+            ],
+            "data": "https://gis.worldviewsolutions.com/arcgis/rest/services/norton/real_estate/MapServer/21"
+
         },
+        
         "US Census": {
             "geoid": "1349756",
             "name": "City of Marietta",
@@ -22,6 +26,8 @@
     "schema": 2,
     "data": "https://gis.worldviewsolutions.com/arcgis/rest/services/norton/real_estate/MapServer/21",
     "layers": {
+        "data": "https://gis.worldviewsolutions.com/arcgis/rest/services/norton/real_estate/MapServer/21",
+
         "addresses": [
             {
                 "name": "city",
