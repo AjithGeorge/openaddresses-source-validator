@@ -39,10 +39,10 @@ jobs:
           ls -a
           cat url_check.txt
 
-      - run: mkdir -p path/to/artifact
-      - run: echo hello > path/to/artifact/wor_ld.txt
+      - run: pwd
+      - run: ls -a
       - uses: actions/upload-artifact@v4
         with:
           name: my-artifact
-          path: path/to/artifact/wor_ld.txt
+          path: /logs/*
 
