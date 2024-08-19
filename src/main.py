@@ -6,7 +6,7 @@ import logging
 from tqdm import tqdm
 
 # Set up log directory and file
-log_dir = 'logs'  # Replace with your desired log directory
+log_dir = './out'  # Replace with your desired log directory
 log_file = 'url_check.log'
 os.makedirs(log_dir, exist_ok=True)  # Create log directory if it doesn't exist
 log_path = os.path.join(log_dir, log_file)

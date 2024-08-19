@@ -30,17 +30,18 @@ jobs:
         run: |
           python src/main.py
 
-      - name: Wait for logs to flush
+      - name: Wait for flush
         run: sleep 2    
 
       - name: Display log file contents
         run: |
           echo "Log file content:"
-          cat logs/url_check.log  
+          cat out/url_check.log  
+          cat test/sample1.json
 
       - run: pwd
-      - run: ls -la logs
+      - run: ls -la out
       - uses: actions/upload-artifact@v4
         with:
           name: my-artifact
-          path: logs/*
+          path: out/*
