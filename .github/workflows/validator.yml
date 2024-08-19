@@ -8,14 +8,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout this repo
-        uses: actions/checkout@v4
-
       - name: Checkout the external repository
         uses: actions/checkout@v4
         with:
           repository: openaddresses/openaddresses
           path: oa_repo
+
+      - name: Checkout this repo
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -35,6 +35,7 @@ jobs:
           ls -a
           cat logs/*.log
           cd logs
+          pwd
           ls -a
           cat url_check.log
 
@@ -42,4 +43,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: logs
-          path: logs/url_check.log
+          path: /*.log
