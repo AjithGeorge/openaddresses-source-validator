@@ -144,13 +144,17 @@ def generate_badges_from_log(log_path, output_dir='./badges'):
             exception_match = exception_pattern.search(line)
             
             if status_match:
-                file_path = status_match.group(1).replace('\\', '/').lstrip('./')
+                # Extract the file path and remove everything before 'sources'
+                full_file_path = status_match.group(1).replace('\\', '/').lstrip('./')
+                file_path = full_file_path.split('sources/', 1)[-1]  # Take only the part after 'sources'
                 status_code = status_match.group(2)
-                badge_md = f"![{file_path} - Status code {status_code}](https://img.shields.io/badge/{file_path.replace('/', '_')}-Failed-red)"
+                badge_md = f"[![{file_path} - Status code {status_code}](https://img.shields.io/badge/{file_path}-Failed-red)](https://github.com/openaddresses/openaddresses/tree/master/sources/{file_path})"
             
             elif exception_match:
-                file_path = exception_match.group(1).replace('\\', '/').lstrip('./')
-                badge_md = f"![{file_path} - Exception](https://img.shields.io/badge/{file_path.replace('/', '_')}-Exception-red)"
+                # Extract the file path and remove everything before 'sources'
+                full_file_path = exception_match.group(1).replace('\\', '/').lstrip('./')
+                file_path = full_file_path.split('sources/', 1)[-1]  # Take only the part after 'sources'
+                badge_md = f"[![{file_path} - Exception](https://img.shields.io/badge/{file_path}-Exception-red)](https://github.com/openaddresses/openaddresses/tree/master/sources/{file_path})"
             
             else:
                 continue
@@ -159,8 +163,8 @@ def generate_badges_from_log(log_path, output_dir='./badges'):
             badge_file_name = f"badge_{i}.md"
             badge_file_path = os.path.join(output_dir, badge_file_name)
             with open(badge_file_path, 'w') as badge_file:
-                badge_file.write(badge_md)
-                
+                badge_file.write(badge_md)  
+                                           
 if __name__ == "__main__":
     root_directory = os.getenv('ROOT_DIRECTORY', './test')
     process_all_json_files(root_directory, parallel=PARALLEL_PROCESSING)
