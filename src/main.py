@@ -41,7 +41,7 @@ def check_url(url, file_path):
     
     def make_request_and_log(url):
         try:
-            response = requests.head(url, allow_redirects=True, timeout=15, headers=headers)
+            response = requests.head(url, allow_redirects=True, timeout=10, headers=headers)
             status_code =response.status_code
             if 200 <= response.status_code < 300:
                 logging.info(f"{file_path} - URL is working - {url}")
@@ -55,7 +55,7 @@ def check_url(url, file_path):
     
     def make_request(url):
         try:
-            response = requests.head(url, allow_redirects=True, timeout=15, headers=headers)
+            response = requests.head(url, allow_redirects=True, timeout=10, headers=headers)
             if 200 <= response.status_code < 300:
                 logging.info(f"{file_path} - URL is working - {url}")
                 return True
