@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status Badges</title>
+</head>
+<body>
+    <h1>Status Badges</h1>
+    <div id="badges"></div>
+
+    <script>
+        async function loadBadges() {
+            try {
+                const response = await fetch('badges/badges.json');
+                const badges = await response.json();
+
+                const badgeContainer = document.getElementById('badges');
+                for (const file of badges) {
+                    const mdResponse = await fetch(`badges/${file}`);
+                    const mdText = await mdResponse.text();
+
+                    // Extract the image URL and link URL from the Markdown content
+                    const matches = mdText.match(/\[!\[.*\]\(https:\/\/img.shields.io\/badge\/[^)]+\)\]\((https:\/\/github.com\/[^)]+)\)/g);
+                    if (matches) {
+                        for (const match of matches) {
+                            const imageUrlMatch = match.match(/\(https:\/\/img.shields.io\/badge\/[^)]+\)/);
+                            const linkUrlMatch = match.match(/\]\((https:\/\/github.com\/[^)]+)\)/);
+
+                            if (imageUrlMatch && linkUrlMatch) {
+                                const imageUrl = imageUrlMatch[0].slice(1, -1); // Remove parentheses
+                                const linkUrl = linkUrlMatch[1]; // Get the URL inside the parentheses
+                                
+                                const link = document.createElement('a');
+                                link.href = linkUrl;
+                                link.target = '_blank';
+                                const img = document.createElement('img');
+                                img.src = imageUrl;
+                                link.appendChild(img);
+                                badgeContainer.appendChild(link);
+                            }
+                        }
+                    } else {
+                        console.warn(`No badges found in file: ${file}`);
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading badges:', error);
+            }
+        }
+
+        window.onload = loadBadges;
+    </script>
+</body>
+</html>
