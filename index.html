@@ -6,7 +6,7 @@
     <title>Status Badges</title>
 </head>
 <body>
-    <h1>Status Badges</h1>
+    <h1>Broken Links Identifed: </h1>
     <div id="badges"></div>
 
     <script>
@@ -17,6 +17,7 @@
 
                 const badgeContainer = document.getElementById('badges');
                 const groups = {};
+                const seenBadges = new Set();  // To track and remove duplicates
 
                 // Fetch all badge files in parallel
                 const badgeFetchPromises = badges.map(file => fetch(`badges/${file}`).then(res => res.text()));
@@ -36,6 +37,13 @@
                                 const imageUrl = imageUrlMatch[1]; // Get the image URL
                                 const linkUrl = linkUrlMatch[1]; // Get the link URL
                                 const badgeText = badgeTextMatch[1]; // Get the badge text
+
+                                // Use a unique identifier for each badge to check for duplicates
+                                const badgeIdentifier = `${imageUrl}|${linkUrl}`;
+                                if (seenBadges.has(badgeIdentifier)) {
+                                    return; // Skip if the badge is a duplicate
+                                }
+                                seenBadges.add(badgeIdentifier);
 
                                 // Extract the prefix for grouping (e.g., "us/ia")
                                 const prefixMatch = badgeText.match(/^[^/]+\/[^/]+/);
