@@ -10,6 +10,9 @@ The [github page]((https://ajithgeorge.github.io/openaddresses-source-validator/
 
 The GitHub page provides a quick way to review the broken sources.
 
+### Note
+The same works locally too, just update the `main.py` with the required source path and the logs will be generated for the broken links.
+
 ## OA Source Validator Workflow
 ### Inputs
 
