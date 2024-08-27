@@ -4,4 +4,4 @@ To identify broken sources in OpenAddress sources
 A simple ovierview of the flow chart is as:
 
 
- ![flow chart](flow_chart.png)
+ ![flow chart](flow-chart.png)
