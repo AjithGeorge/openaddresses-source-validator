@@ -1,0 +1,1 @@
+[![us/wv/wood.json - Exception](https://img.shields.io/badge/us/wv/wood.json-Exception-red)](https://github.com/openaddresses/openaddresses/tree/master/sources/us/wv/wood.json)

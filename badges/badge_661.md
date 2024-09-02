@@ -1,0 +1,1 @@
+[![us/wi/outagamie.json - Exception](https://img.shields.io/badge/us/wi/outagamie.json-Exception-red)](https://github.com/openaddresses/openaddresses/tree/master/sources/us/wi/outagamie.json)

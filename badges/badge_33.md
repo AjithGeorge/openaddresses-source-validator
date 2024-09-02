@@ -1,0 +1,1 @@
+[![us/wv/gilmer.json - Exception](https://img.shields.io/badge/us/wv/gilmer.json-Exception-red)](https://github.com/openaddresses/openaddresses/tree/master/sources/us/wv/gilmer.json)

@@ -1,0 +1,1 @@
+[![us/ia/story.json - Exception](https://img.shields.io/badge/us/ia/story.json-Exception-red)](https://github.com/openaddresses/openaddresses/tree/master/sources/us/ia/story.json)

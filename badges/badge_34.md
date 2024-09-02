@@ -1,0 +1,1 @@
+[![us/wv/taylor.json - Exception](https://img.shields.io/badge/us/wv/taylor.json-Exception-red)](https://github.com/openaddresses/openaddresses/tree/master/sources/us/wv/taylor.json)

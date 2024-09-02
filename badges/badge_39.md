@@ -1,0 +1,1 @@
+[![us/wv/summers.json - Exception](https://img.shields.io/badge/us/wv/summers.json-Exception-red)](https://github.com/openaddresses/openaddresses/tree/master/sources/us/wv/summers.json)

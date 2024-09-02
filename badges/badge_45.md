@@ -1,0 +1,1 @@
+[![us/wv/putnam.json - Exception](https://img.shields.io/badge/us/wv/putnam.json-Exception-red)](https://github.com/openaddresses/openaddresses/tree/master/sources/us/wv/putnam.json)

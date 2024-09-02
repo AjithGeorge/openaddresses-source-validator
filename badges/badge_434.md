@@ -1,0 +1,1 @@
+[![us/sc/oconee.json - Exception](https://img.shields.io/badge/us/sc/oconee.json-Exception-red)](https://github.com/openaddresses/openaddresses/tree/master/sources/us/sc/oconee.json)

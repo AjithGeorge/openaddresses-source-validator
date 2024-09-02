@@ -1,0 +1,1 @@
+[![us/al/bullock.json - Exception](https://img.shields.io/badge/us/al/bullock.json-Exception-red)](https://github.com/openaddresses/openaddresses/tree/master/sources/us/al/bullock.json)
